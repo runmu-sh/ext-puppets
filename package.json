@@ -1,0 +1,73 @@
+{
+  "name": "@runmu.sh/ext-puppets",
+  "version": "1.1.1",
+  "description": "Remote puppet viewpoints: a feed, scene and command line per puppet, with unread counts, driven by GMCP Client.Puppets.* or another extension's API.",
+  "keywords": [
+    "puppets",
+    "npc",
+    "staff",
+    "gmcp",
+    "panel"
+  ],
+  "license": "MIT",
+  "homepage": "https://runmu.sh/marketplace/x/puppets",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/runmu-sh/ext-puppets.git"
+  },
+  "bugs": {
+    "url": "https://github.com/runmu-sh/ext-puppets/issues"
+  },
+  "type": "module",
+  "exports": "./dist/index.js",
+  "types": "./src/types.ts",
+  "files": [
+    "dist",
+    "src/types.ts",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "typecheck": "tsc --noEmit",
+    "check": "node scripts/build.mjs --check"
+  },
+  "devDependencies": {
+    "@muclient/sdk": "npm:@runmu.sh/sdk@^1.6.0",
+    "@runmu.sh/dev": "^0.1.0",
+    "@runmu.sh/ext-kit": "^1.0.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "muclient": {
+    "id": "puppets",
+    "api": "^1.5",
+    "source": "src/index.ts",
+    "displayName": "Puppets",
+    "description": "Remote puppet viewpoints: a feed, scene and command line per puppet, with unread counts, driven by GMCP Client.Puppets.* or another extension's API.",
+    "categories": [
+      "interface",
+      "games"
+    ],
+    "contributes": {
+      "panels": [
+        {
+          "id": "puppets",
+          "title": "Puppets"
+        }
+      ],
+      "gmcp": [
+        "Client.Puppets 1"
+      ]
+    },
+    "capabilities": [
+      "read-output",
+      "send-commands"
+    ],
+    "publisher": "bitmuse"
+  }
+}
