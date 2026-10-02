@@ -1,0 +1,16 @@
+{
+  "$comment": "Client.Puppets.Feed: new lines of one puppet's viewpoint. news 'room' counts as unread.",
+  "type": "object",
+  "required": ["npc_id", "lines"],
+  "properties": {
+    "npc_id": { "type": ["string", "integer"] },
+    "lines": { "type": "array", "items": { "$ref": "#/$defs/line" } }
+  },
+  "$defs": {
+    "line": {
+      "type": "object",
+      "required": ["body"],
+      "properties": { "body": { "type": "string" }, "revision": { "type": "number" }, "action_id": { "type": ["string", "integer"] }, "news": { "type": "string" } }
+    }
+  }
+}

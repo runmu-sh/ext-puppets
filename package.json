@@ -1,7 +1,7 @@
 {
   "name": "@runmu.sh/ext-puppets",
-  "version": "1.1.1",
-  "description": "Remote puppet viewpoints: a feed, scene and command line per puppet, with unread counts, driven by GMCP Client.Puppets.* or another extension's API.",
+  "version": "1.2.0",
+  "description": "Remote puppet viewpoints: a feed, scene and command line per puppet, with unread counts on the tab, driven by GMCP Client.Puppets.* or another extension's API.",
   "keywords": [
     "puppets",
     "npc",
@@ -24,6 +24,7 @@
   "files": [
     "dist",
     "src/types.ts",
+    "schema",
     "README.md",
     "CHANGELOG.md"
   ],
@@ -31,13 +32,14 @@
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev.mjs",
     "typecheck": "tsc --noEmit",
+    "test": "node --test test/*.test.mjs",
     "check": "node scripts/build.mjs --check"
   },
   "devDependencies": {
-    "@muclient/sdk": "npm:@runmu.sh/sdk@^1.6.0",
-    "@runmu.sh/dev": "^0.1.0",
-    "@runmu.sh/ext-kit": "^1.0.0",
+    "@muclient/sdk": "npm:@runmu.sh/sdk@^1.12.0",
+    "@runmu.sh/dev": "^0.2.0",
     "esbuild": "^0.28.2",
+    "happy-dom": "^20.0.0",
     "typescript": "^5.9.0"
   },
   "engines": {
@@ -45,10 +47,10 @@
   },
   "muclient": {
     "id": "puppets",
-    "api": "^1.5",
+    "api": "^1.12",
     "source": "src/index.ts",
     "displayName": "Puppets",
-    "description": "Remote puppet viewpoints: a feed, scene and command line per puppet, with unread counts, driven by GMCP Client.Puppets.* or another extension's API.",
+    "description": "Remote puppet viewpoints: a feed, scene and command line per puppet, with unread counts on the tab, driven by GMCP Client.Puppets.* or another extension's API.",
     "categories": [
       "interface",
       "games"
@@ -57,16 +59,50 @@
       "panels": [
         {
           "id": "puppets",
-          "title": "Puppets"
+          "title": "Puppets",
+          "singleton": true,
+          "defaultPosition": "right-top"
         }
       ],
       "gmcp": [
-        "Client.Puppets 1"
+        {
+          "package": "Client.Puppets 1",
+          "messages": {
+            "Client.Puppets.Manifest": {
+              "dir": "in",
+              "schema": "schema/manifest.json"
+            },
+            "Client.Puppets.Feed": {
+              "dir": "in",
+              "schema": "schema/feed.json"
+            },
+            "Client.Puppets.Scene": {
+              "dir": "in",
+              "schema": "schema/scene.json"
+            },
+            "Client.Puppets.Sync": {
+              "dir": "in",
+              "schema": "schema/sync.json"
+            },
+            "Client.Puppets.Resync": {
+              "dir": "out",
+              "schema": "schema/resync.json"
+            },
+            "Client.Puppets.Command": {
+              "dir": "out",
+              "schema": "schema/command.json"
+            },
+            "Client.Puppets.Add": {
+              "dir": "out",
+              "schema": "schema/add.json"
+            }
+          }
+        }
       ]
     },
     "capabilities": [
-      "read-output",
-      "send-commands"
+      "send-commands",
+      "files"
     ],
     "publisher": "bitmuse"
   }

@@ -1,0 +1,15 @@
+{
+  "$comment": "Client.Puppets.Manifest: the whole set of the session's puppets; puppets not listed are dropped.",
+  "type": "object",
+  "required": ["puppets"],
+  "properties": {
+    "puppets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["npc_id"],
+        "properties": { "npc_id": { "type": ["string", "integer"] }, "slot": { "type": ["integer", "string"] }, "name": { "type": "string" } }
+      }
+    }
+  }
+}

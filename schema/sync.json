@@ -1,0 +1,26 @@
+{
+  "$comment": "Client.Puppets.Sync: the answer to Resync, replacing one puppet's buffer (and scene).",
+  "type": "object",
+  "required": ["npc_id", "lines"],
+  "properties": {
+    "npc_id": { "type": ["string", "integer"] },
+    "revision": { "type": "number" },
+    "lines": { "type": "array", "items": { "$ref": "#/$defs/line" } },
+    "scene": {
+      "type": "object",
+      "properties": {
+        "revision": { "type": "number" },
+        "room": { "type": "object", "properties": { "name": { "type": "string" }, "desc": { "type": "string" } } },
+        "occupants": { "type": "array", "items": { "type": "string" } },
+        "exits": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "$defs": {
+    "line": {
+      "type": "object",
+      "required": ["body"],
+      "properties": { "body": { "type": "string" }, "revision": { "type": "number" }, "action_id": { "type": ["string", "integer"] }, "news": { "type": "string" } }
+    }
+  }
+}

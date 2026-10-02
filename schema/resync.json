@@ -1,0 +1,6 @@
+{
+  "$comment": "Client.Puppets.Resync: sent when a puppet is opened, with the last revision the client holds.",
+  "type": "object",
+  "required": ["npc_id", "revision"],
+  "properties": { "npc_id": { "type": "string" }, "revision": { "type": "number" } }
+}

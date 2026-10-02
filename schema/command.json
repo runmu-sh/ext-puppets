@@ -1,0 +1,6 @@
+{
+  "$comment": "Client.Puppets.Command: a command typed at a puppet's P1> line.",
+  "type": "object",
+  "required": ["npc_id", "cmd"],
+  "properties": { "npc_id": { "type": "string" }, "cmd": { "type": "string" } }
+}

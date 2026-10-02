@@ -1,0 +1,6 @@
+{
+  "$comment": "Client.Puppets.Add: ask the game to add an NPC to the session's puppets; it answers with a new Manifest.",
+  "type": "object",
+  "required": ["npc_id"],
+  "properties": { "npc_id": { "type": "string" } }
+}

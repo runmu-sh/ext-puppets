@@ -1,0 +1,12 @@
+{
+  "$comment": "Client.Puppets.Scene: where one puppet is (a full snapshot).",
+  "type": "object",
+  "required": ["npc_id"],
+  "properties": {
+    "npc_id": { "type": ["string", "integer"] },
+    "revision": { "type": "number" },
+    "room": { "type": "object", "properties": { "name": { "type": "string" }, "desc": { "type": "string" } } },
+    "occupants": { "type": "array", "items": { "type": "string" } },
+    "exits": { "type": "array", "items": { "type": "string" } }
+  }
+}
